@@ -1,0 +1,16 @@
+name: titanbay
+version: '1.0.0'
+profile: titanbay
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  titanbay:
+    staging:
+      +materialized: view 
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
