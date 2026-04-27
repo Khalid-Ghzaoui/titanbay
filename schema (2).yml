@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: int_investors_enriched
+    description: >
+      One row per investor, enriched with entity, partner, and relationship manager context.
+      Grain is investor_id. Row count must match stg_platform__investors.
+    columns:
+      - name: investor_id
+        description: Unique identifier for the investor
+        tests:
+          - unique
+          - not_null
+      - name: entity_id
+        description: The investing entity this investor belongs to
+        tests:
+          - not_null
+      - name: partner_id
+        description: The partner organisation associated with this investor
+        tests:
+          - not_null
+      - name: kyc_status
+        description: KYC approval status of the investor's entity
+        tests:
+          - accepted_values:
+              values: ['approved', 'pending', 'expired', 'rejected']
